@@ -3,6 +3,7 @@ package GameState;
 import Entity.Enemies.Slugger;
 import Entity.Enemy;
 import Entity.HUD;
+import Entity.Inventory;
 import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
@@ -23,6 +24,7 @@ public class Level1State extends GameState {
     // add explosions
 
     private HUD hud;
+    private Inventory inventory;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -46,6 +48,7 @@ public class Level1State extends GameState {
         // explosions
 
         hud = new HUD(player);
+        inventory = new Inventory(player);
 
         populateEnemies();
     }
@@ -89,6 +92,10 @@ public class Level1State extends GameState {
             }
         }
 
+        if (player.isDead()) {
+            gsm.setState(GameStateManager.DEADSTATE);
+        }
+
         // update explosions
     }
 
@@ -98,6 +105,7 @@ public class Level1State extends GameState {
         tileMap.draw(g);
         player.draw(g);
         hud.draw(g);
+        inventory.draw(g);
 
         // draw enemies
         for (int i = 0; i < enemies.size(); i++) {
