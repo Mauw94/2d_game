@@ -1,5 +1,6 @@
 package Entity;
 
+import Main.GamePanel;
 import TileMap.*;
 // import Audio.AudioPlayer;
 
@@ -19,6 +20,9 @@ public class Player extends MapObject {
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
+    private Inventory inventory;
+    private ArrayList<Item> items;
+    private String playerName;
 
     // fireball
     private boolean firing;
@@ -54,6 +58,19 @@ public class Player extends MapObject {
     public Player(TileMap tm) {
 
         super(tm);
+
+        playerName = "New Player";
+        items = new ArrayList<>();
+        items.add(new Item(tm, Item.HEALTH_POTION));
+        items.add(new Item(tm, Item.SPEED_POTION));
+        items.add(new Item(tm, Item.HEALTH_POTION));
+        items.add(new Item(tm, Item.HEALTH_POTION));
+        items.add(new Item(tm, Item.HEALTH_POTION));
+
+        inventory = new Inventory(tm,this);
+        for (Item i : items) {
+            inventory.addInventoryItem(i);
+        }
 
         width = 30;
         height = 30;
@@ -160,6 +177,12 @@ public class Player extends MapObject {
 
     public void setGliding(boolean b) {
         gliding = b;
+    }
+
+    public String getPlayerName() { return playerName; }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public void checkAttack(ArrayList<Enemy> enemies) {
@@ -273,9 +296,13 @@ public class Player extends MapObject {
             if (dy < 0 && !jumping) dy += stopJumpSpeed;
 
             if (dy > maxFallSpeed) dy = maxFallSpeed;
-
         }
+    }
 
+    private void checkFallingOffScreen() {
+        if (y > GamePanel.HEIGHT - width / 2) {
+            dead = true;
+        }
     }
 
     public void update() {
@@ -283,7 +310,10 @@ public class Player extends MapObject {
         // update position
         getNextPosition();
         checkTileMapCollision();
+        checkFallingOffScreen();
         setPosition(xtemp, ytemp);
+
+        // System.out.println(x + " " + y);
 
         // check attack has stopped
         if (currentAction == SCRATCHING) {
@@ -383,7 +413,6 @@ public class Player extends MapObject {
             if (right) facingRight = true;
             if (left) facingRight = false;
         }
-
     }
 
     public void draw(Graphics2D g) {

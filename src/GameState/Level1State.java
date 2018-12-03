@@ -45,10 +45,11 @@ public class Level1State extends GameState {
         player = new Player(tileMap);
         player.setPosition(100, 100);
 
+        inventory = player.getInventory();
+
         // explosions
 
         hud = new HUD(player);
-        inventory = new Inventory(player);
 
         populateEnemies();
     }
@@ -73,6 +74,7 @@ public class Level1State extends GameState {
     @Override
     public void update() {
         player.update();
+
         tileMap.setPosition(
                 GamePanel.WIDTH / 2 - player.getx(),
                 GamePanel.HEIGHT / 2 - player.gety());
@@ -125,6 +127,9 @@ public class Level1State extends GameState {
         if(k == KeyEvent.VK_E) player.setGliding(true);
         if(k == KeyEvent.VK_R) player.setScratching();
         if(k == KeyEvent.VK_F) player.setFiring();
+        if(k == KeyEvent.VK_A) inventory.cycleLeft();
+        if(k == KeyEvent.VK_D) inventory.cycleRight();
+        if(k == KeyEvent.VK_ENTER) inventory.useItem();
     }
 
     @Override

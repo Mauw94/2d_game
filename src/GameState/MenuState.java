@@ -55,14 +55,7 @@ public class MenuState extends GameState {
 
         // draw options
         g.setFont(font);
-        for (int i = 0; i < options.length; i++) {
-            if (i == currentChoice) {
-                g.setColor(Color.BLACK);
-            } else {
-                g.setColor(Color.RED);
-            }
-            g.drawString(options[i], 145, 140 + i * 15);
-        }
+        DrawTextToScreen.drawOptions(currentChoice, options, g);
     }
 
     private void select() {
@@ -70,7 +63,7 @@ public class MenuState extends GameState {
             gsm.setState(GameStateManager.LEVEL1STATE);
         }
         if (currentChoice == 1) {
-            // help
+            gsm.setState(GameStateManager.HELPSTATE);
         }
         if (currentChoice == 2) {
             System.exit(0);
