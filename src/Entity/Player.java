@@ -20,6 +20,9 @@ public class Player extends MapObject {
     private boolean dead;
     private boolean flinching;
     private long flinchTimer;
+    private Inventory inventory;
+    private ArrayList<Item> items;
+    private String playerName;
 
     // fireball
     private boolean firing;
@@ -50,13 +53,24 @@ public class Player extends MapObject {
     private static final int FIREBALL = 5;
     private static final int SCRATCHING = 6;
 
-    private boolean onScreen;
-
     // private HashMap<String, AudioPlayer> sfx;
 
     public Player(TileMap tm) {
 
         super(tm);
+
+        playerName = "New Player";
+        items = new ArrayList<>();
+        items.add(new Item(tm, Item.HEALTH_POTION));
+        items.add(new Item(tm, Item.SPEED_POTION));
+        items.add(new Item(tm, Item.HEALTH_POTION));
+        items.add(new Item(tm, Item.HEALTH_POTION));
+        items.add(new Item(tm, Item.HEALTH_POTION));
+
+        inventory = new Inventory(tm,this);
+        for (Item i : items) {
+            inventory.addInventoryItem(i);
+        }
 
         width = 30;
         height = 30;
@@ -82,8 +96,6 @@ public class Player extends MapObject {
 
         scratchDamage = 8;
         scratchRange = 40;
-
-        onScreen = true;
 
         // load sprites
         try {
@@ -165,6 +177,12 @@ public class Player extends MapObject {
 
     public void setGliding(boolean b) {
         gliding = b;
+    }
+
+    public String getPlayerName() { return playerName; }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public void checkAttack(ArrayList<Enemy> enemies) {
@@ -295,7 +313,9 @@ public class Player extends MapObject {
         checkFallingOffScreen();
         setPosition(xtemp, ytemp);
 
-                // check attack has stopped
+        // System.out.println(x + " " + y);
+
+        // check attack has stopped
         if (currentAction == SCRATCHING) {
             if (animation.hasPlayedOnce()) scratching = false;
         }
@@ -393,7 +413,6 @@ public class Player extends MapObject {
             if (right) facingRight = true;
             if (left) facingRight = false;
         }
-
     }
 
     public void draw(Graphics2D g) {
