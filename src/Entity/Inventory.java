@@ -4,8 +4,6 @@ import Main.GamePanel;
 import TileMap.TileMap;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class Inventory extends MapObject {
@@ -19,7 +17,7 @@ public class Inventory extends MapObject {
         super(tm);
         this.player = p;
         inventory = new ArrayList<Item>();
-        font = new Font("Arial", Font.PLAIN, 14);
+        font = new Font("Arial", Font.PLAIN, 12);
     }
 
     public ArrayList<Item> getInventory() { return inventory; }
@@ -27,13 +25,14 @@ public class Inventory extends MapObject {
     public String inventoryBelongsTo() { return this.player.getPlayerName(); }
 
     public void useItem() {
+        if (this.inventory.size() == 0) return;
         // benefits of the item onto the player or world
 
         // remove the item
-        System.out.print("Removed item" + this.inventory.get(currentItem).getItemName());
         this.inventory.remove(currentItem);
 
         // remove item from player
+        this.player.removeInventoryItem(currentItem);
     }
 
     private Item getCurrentItem() {
@@ -49,11 +48,13 @@ public class Inventory extends MapObject {
         g.setColor(Color.BLACK);
         for (int i = 0; i < inventory.size(); i++) {
             if (i == currentItem) {
-                g.setColor(Color.RED);
+                g.setColor(Color.WHITE);
             } else {
                 g.setColor(Color.BLACK);
             }
             g.drawRect((GamePanel.WIDTH - 25) - i * 18, 15, 15, 15);
+            g.drawImage(inventory.get(i).getImage(),(GamePanel.WIDTH - 25) - i * 18, 15, null);
+            g.drawString(inventory.get(i).getItemNameShort(), (GamePanel.WIDTH - 25) - i * 18, 25);
         }
     }
 

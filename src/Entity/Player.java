@@ -63,9 +63,8 @@ public class Player extends MapObject {
         items = new ArrayList<>();
         items.add(new Item(tm, Item.HEALTH_POTION));
         items.add(new Item(tm, Item.SPEED_POTION));
-        items.add(new Item(tm, Item.HEALTH_POTION));
-        items.add(new Item(tm, Item.HEALTH_POTION));
-        items.add(new Item(tm, Item.HEALTH_POTION));
+        items.add(new Item(tm, Item.DAMAGE_POTION));
+        items.add(new Item(tm, Item.FIRE_POTION));
 
         inventory = new Inventory(tm,this);
         for (Item i : items) {
@@ -183,6 +182,14 @@ public class Player extends MapObject {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public int getInventorySize() {
+        return inventory.getInventory().size();
+    }
+
+    public void removeInventoryItem(int currentItem) {
+        items.remove(currentItem);
     }
 
     public void checkAttack(ArrayList<Enemy> enemies) {
