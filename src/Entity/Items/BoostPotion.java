@@ -37,7 +37,7 @@ public class BoostPotion extends Item {
                     bonusStarted = false;
                 }
             };
-            timer.schedule(task, 3000);
+            timer.schedule(task, 4000);
         }
         return true;
    }

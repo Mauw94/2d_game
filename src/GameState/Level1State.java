@@ -2,6 +2,7 @@ package GameState;
 
 import Entity.*;
 import Entity.Enemies.Slugger;
+import Entity.Items.BoostPotion;
 import Entity.Items.HealthPotion;
 import Entity.Items.Item;
 import Main.GamePanel;
@@ -78,6 +79,10 @@ public class Level1State extends GameState {
         Item healthPotion = new HealthPotion(tileMap, Item.HEALTH_POTION, player);
         healthPotion.setPosition(180, 100);
         items.add(healthPotion);
+
+        Item boostPotion = new BoostPotion(tileMap, Item.BOOST_POTION, player);
+        boostPotion.setPosition(840, 200);
+        items.add(boostPotion);
     }
 
     @Override

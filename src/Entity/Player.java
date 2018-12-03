@@ -317,7 +317,7 @@ public class Player extends MapObject {
         setPosition(xtemp, ytemp);
 
         // log stuff here
-        System.out.println("maxspeed: " + maxSpeed);
+        // System.out.println("maxspeed: " + maxSpeed);
 
         // check attack has stopped
         if (currentAction == SCRATCHING) {
