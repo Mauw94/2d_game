@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Item extends MapObject {
+public abstract class Item extends MapObject {
 
     private String name;
     private int type;
@@ -69,6 +69,8 @@ public class Item extends MapObject {
     public String getItemNameShort() { return this.name.substring(0, 1); }
     public boolean shouldRemove() { return remove; }
     public void setRemove(boolean r) { this.remove = r; }
+
+    public abstract boolean addBonus();
 
     private void getNextPosition() {
         if (falling) {

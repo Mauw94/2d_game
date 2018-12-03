@@ -33,7 +33,9 @@ public class Inventory extends MapObject {
 
     public void useItem() {
         if (this.inventory.size() == 0) return;
+
         // benefits of the item onto the player or world
+        if (!this.inventory.get(currentItem).addBonus()) return;
 
         // remove the item
         this.inventory.remove(currentItem);

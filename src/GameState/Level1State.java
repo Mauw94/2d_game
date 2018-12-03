@@ -75,17 +75,9 @@ public class Level1State extends GameState {
 
     private void populateItems() {
         items = new ArrayList<>();
-        Item healthPotion = new HealthPotion(tileMap, Item.HEALTH_POTION);
+        Item healthPotion = new HealthPotion(tileMap, Item.HEALTH_POTION, player);
         healthPotion.setPosition(180, 100);
         items.add(healthPotion);
-
-        Item boostPotion = new Item(tileMap, Item.BOOST_POTION);
-        boostPotion.setPosition(840, 200);
-        items.add(boostPotion);
-
-        Item damagePotion = new Item(tileMap, Item.DAMAGE_POTION);
-        damagePotion.setPosition(970, 200);
-        items.add(damagePotion);
     }
 
     @Override

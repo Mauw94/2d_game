@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Items.HealthPotion;
 import Entity.Items.Item;
 import Main.GamePanel;
 import TileMap.*;
@@ -61,10 +62,7 @@ public class Player extends MapObject {
 
         playerName = "New Player";
         items = new ArrayList<>();
-        items.add(new Item(tm, Item.HEALTH_POTION));
-        items.add(new Item(tm, Item.BOOST_POTION));
-        items.add(new Item(tm, Item.DAMAGE_POTION));
-        items.add(new Item(tm, Item.FIRE_POTION));
+        items.add(new HealthPotion(tm, Item.HEALTH_POTION, this));
 
         inventory = new Inventory(tm,this);
         for (Item i : items) {
@@ -86,7 +84,8 @@ public class Player extends MapObject {
 
         facingRight = true;
 
-        health = maxHealth = 5;
+        health = 4;
+        maxHealth = 5;
         fire = maxFire = 2500;
 
         fireCost = 200;
@@ -156,6 +155,10 @@ public class Player extends MapObject {
 
     public int getMaxHealth() {
         return maxHealth;
+    }
+
+    public void addHealth(int hp) {
+        health += hp;
     }
 
     public int getFire() {
