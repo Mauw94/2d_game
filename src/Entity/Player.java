@@ -1,5 +1,6 @@
 package Entity;
 
+import Main.GamePanel;
 import TileMap.*;
 // import Audio.AudioPlayer;
 
@@ -49,6 +50,8 @@ public class Player extends MapObject {
     private static final int FIREBALL = 5;
     private static final int SCRATCHING = 6;
 
+    private boolean onScreen;
+
     // private HashMap<String, AudioPlayer> sfx;
 
     public Player(TileMap tm) {
@@ -79,6 +82,8 @@ public class Player extends MapObject {
 
         scratchDamage = 8;
         scratchRange = 40;
+
+        onScreen = true;
 
         // load sprites
         try {
@@ -273,9 +278,13 @@ public class Player extends MapObject {
             if (dy < 0 && !jumping) dy += stopJumpSpeed;
 
             if (dy > maxFallSpeed) dy = maxFallSpeed;
-
         }
+    }
 
+    private void checkFallingOffScreen() {
+        if (y > GamePanel.HEIGHT - width / 2) {
+            dead = true;
+        }
     }
 
     public void update() {
@@ -283,9 +292,10 @@ public class Player extends MapObject {
         // update position
         getNextPosition();
         checkTileMapCollision();
+        checkFallingOffScreen();
         setPosition(xtemp, ytemp);
 
-        // check attack has stopped
+                // check attack has stopped
         if (currentAction == SCRATCHING) {
             if (animation.hasPlayedOnce()) scratching = false;
         }

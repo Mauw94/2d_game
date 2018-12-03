@@ -1,6 +1,5 @@
 package GameState;
 
-import Main.Game;
 import TileMap.Background;
 
 import java.awt.*;
@@ -10,16 +9,20 @@ public class DeadState extends GameState {
 
     private Background bg;
     private int currentChoice = 0;
-    private String[] choices = {
+    private String[] options = {
             "Retry",
-            "Back to main menu"
+            "Main menu"
     };
+    private String title;
+    private Font titleFont;
 
     public DeadState(GameStateManager gsm) {
         this.gsm = gsm;
         try {
             bg = new Background("/Backgrounds/menubg.gif", 1);
-            bg.setVector(-0.9, 0);
+            bg.setVector(-1.9, 0);
+            title = "You have died.";
+            titleFont = new Font("Century Gother", Font.PLAIN, 28);
 
         } catch (Exception e) {}
     }
@@ -37,14 +40,10 @@ public class DeadState extends GameState {
     @Override
     public void draw(Graphics2D g) {
         bg.draw(g);
-        for (int i = 0; i < choices.length; i++) {
-            if (i == currentChoice) {
-                g.setColor(Color.BLACK);
-            } else {
-                g.setColor(Color.RED);
-            }
-            g.drawString(choices[i], 145, 140 + i * 15);
-        }
+        g.setFont(titleFont);
+        g.setColor(new Color(128, 0, 0));
+        g.drawString(title, 80, 70);
+        DrawTextToScreen.drawOptions(currentChoice, options, g);
     }
 
     private void select() {
@@ -62,14 +61,14 @@ public class DeadState extends GameState {
         }
         if (k == KeyEvent.VK_DOWN) {
             currentChoice++;
-            if (currentChoice > choices.length -1) {
+            if (currentChoice > options.length -1) {
                 currentChoice = 0;
             }
         }
         if (k == KeyEvent.VK_UP) {
             currentChoice--;
             if (currentChoice < 0) {
-                currentChoice = choices.length -1;
+                currentChoice = options.length -1;
             }
         }
 
