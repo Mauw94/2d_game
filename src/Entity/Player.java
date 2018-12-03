@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Items.BoostPotion;
 import Entity.Items.HealthPotion;
 import Entity.Items.Item;
 import Main.GamePanel;
@@ -63,6 +64,7 @@ public class Player extends MapObject {
         playerName = "New Player";
         items = new ArrayList<>();
         items.add(new HealthPotion(tm, Item.HEALTH_POTION, this));
+        items.add(new BoostPotion(tm, Item.BOOST_POTION, this));
 
         inventory = new Inventory(tm,this);
         for (Item i : items) {
@@ -90,28 +92,21 @@ public class Player extends MapObject {
 
         fireCost = 200;
         fireBallDamage = 5;
-        fireBalls = new ArrayList<FireBall>();
+        fireBalls = new ArrayList<>();
 
         scratchDamage = 8;
         scratchRange = 40;
 
         // load sprites
         try {
-
             BufferedImage spritesheet = ImageIO.read(
                     getClass().getResourceAsStream(
-                            "/Sprites/Player/playersprites.gif"
-                    )
-            );
-
-            sprites = new ArrayList<BufferedImage[]>();
+                            "/Sprites/Player/playersprites.gif"));
+            sprites = new ArrayList<>();
             for (int i = 0; i < 7; i++) {
 
-                BufferedImage[] bi =
-                        new BufferedImage[numFrames[i]];
-
+                BufferedImage[] bi = new BufferedImage[numFrames[i]];
                 for (int j = 0; j < numFrames[i]; j++) {
-
                     if (i != SCRATCHING) {
                         bi[j] = spritesheet.getSubimage(
                                 j * width,
@@ -127,13 +122,9 @@ public class Player extends MapObject {
                                 height
                         );
                     }
-
                 }
-
                 sprites.add(bi);
-
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -169,6 +160,9 @@ public class Player extends MapObject {
         return maxFire;
     }
 
+    public double getMovespeed() { return moveSpeed; }
+    public void setMaxSpeed(double s) { this.maxSpeed = s; }
+
     public void setFiring() {
         firing = true;
     }
@@ -199,27 +193,23 @@ public class Player extends MapObject {
 
         // loop through enemies
         for (int i = 0; i < enemies.size(); i++) {
-
             Enemy e = enemies.get(i);
-
             // scratch attack
             if (scratching) {
                 if (facingRight) {
-                    if (
-                            e.getx() > x &&
-                                    e.getx() < x + scratchRange &&
-                                    e.gety() > y - height / 2 &&
-                                    e.gety() < y + height / 2
+                    if (e.getx() > x &&
+                        e.getx() < x + scratchRange &&
+                        e.gety() > y - height / 2 &&
+                        e.gety() < y + height / 2
                     ) {
                         e.hit(scratchDamage);
                     }
 
                 } else {
-                    if (
-                            e.getx() < x &&
-                                    e.getx() > x - scratchRange &&
-                                    e.gety() > y - height / 2 &&
-                                    e.gety() < y + height / 2
+                    if (e.getx() < x &&
+                        e.getx() > x - scratchRange &&
+                        e.gety() > y - height / 2 &&
+                        e.gety() < y + height / 2
                     ) {
                         e.hit(scratchDamage);
                     }
@@ -239,13 +229,10 @@ public class Player extends MapObject {
             if (intersects(e)) {
                 hit(e.getDamage());
             }
-
         }
-
     }
 
     public void checkItemPickup(ArrayList<Item> items) {
-
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
             if (intersects(item) && getInventorySize() < Inventory.MAX_INVENTORY_SPACE) {
@@ -266,7 +253,6 @@ public class Player extends MapObject {
     public boolean isDead() { return dead; }
 
     private void getNextPosition() {
-
         // movement
         if (left) {
             dx -= moveSpeed;
@@ -293,8 +279,7 @@ public class Player extends MapObject {
         }
 
         // cannot move while attacking, except in air
-        if (
-                (currentAction == SCRATCHING || currentAction == FIREBALL) &&
+        if ((currentAction == SCRATCHING || currentAction == FIREBALL) &&
                         !(jumping || falling)) {
             dx = 0;
         }
@@ -308,7 +293,6 @@ public class Player extends MapObject {
 
         // falling
         if (falling) {
-
             if (dy > 0 && gliding) dy += fallSpeed * 0.1;
             else dy += fallSpeed;
 
@@ -326,14 +310,14 @@ public class Player extends MapObject {
     }
 
     public void update() {
-
         // update position
         getNextPosition();
         checkTileMapCollision();
         checkFallingOffScreen();
         setPosition(xtemp, ytemp);
 
-        // System.out.println(x + " " + y);
+        // log stuff here
+        System.out.println("maxspeed: " + maxSpeed);
 
         // check attack has stopped
         if (currentAction == SCRATCHING) {
@@ -341,6 +325,11 @@ public class Player extends MapObject {
         }
         if (currentAction == FIREBALL) {
             if (animation.hasPlayedOnce()) firing = false;
+        }
+
+        // update items
+        for (int i = 0; i < inventory.getInventory().size(); i++) {
+            inventory.getInventory().get(i).update();
         }
 
         // fireball attack
@@ -436,7 +425,6 @@ public class Player extends MapObject {
     }
 
     public void draw(Graphics2D g) {
-
         setMapPosition();
 
         // draw fireballs

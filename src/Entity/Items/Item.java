@@ -14,7 +14,7 @@ public abstract class Item extends MapObject {
     private int type;
     private BufferedImage image;
     public boolean remove;
-
+    public long startTime;
     public static final int HEALTH_POTION = 0;
     public static final int BOOST_POTION = 1;
     public static final int DAMAGE_POTION = 2;
