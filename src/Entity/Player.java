@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Items.Item;
 import Main.GamePanel;
 import TileMap.*;
 // import Audio.AudioPlayer;
@@ -8,7 +9,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
 
 public class Player extends MapObject {
 
@@ -62,7 +62,7 @@ public class Player extends MapObject {
         playerName = "New Player";
         items = new ArrayList<>();
         items.add(new Item(tm, Item.HEALTH_POTION));
-        items.add(new Item(tm, Item.SPEED_POTION));
+        items.add(new Item(tm, Item.BOOST_POTION));
         items.add(new Item(tm, Item.DAMAGE_POTION));
         items.add(new Item(tm, Item.FIRE_POTION));
 
@@ -188,7 +188,7 @@ public class Player extends MapObject {
         return inventory.getInventory().size();
     }
 
-    public void removeInventoryItem(int currentItem) {
+    public void removeItem(int currentItem) {
         items.remove(currentItem);
     }
 
@@ -239,6 +239,16 @@ public class Player extends MapObject {
 
         }
 
+    }
+
+    public void checkItemPickup(ArrayList<Item> items) {
+
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            if (intersects(item) && getInventorySize() < Inventory.MAX_INVENTORY_SPACE) {
+                item.setRemove(true);
+            }
+        }
     }
 
     public void hit(int damage) {

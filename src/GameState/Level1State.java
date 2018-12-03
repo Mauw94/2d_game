@@ -1,10 +1,9 @@
 package GameState;
 
+import Entity.*;
 import Entity.Enemies.Slugger;
-import Entity.Enemy;
-import Entity.HUD;
-import Entity.Inventory;
-import Entity.Player;
+import Entity.Items.HealthPotion;
+import Entity.Items.Item;
 import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
@@ -25,6 +24,8 @@ public class Level1State extends GameState {
 
     private HUD hud;
     private Inventory inventory;
+
+    private ArrayList<Item> items;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -52,6 +53,7 @@ public class Level1State extends GameState {
         hud = new HUD(player);
 
         populateEnemies();
+        populateItems();
     }
 
     private void populateEnemies() {
@@ -71,6 +73,21 @@ public class Level1State extends GameState {
         }
     }
 
+    private void populateItems() {
+        items = new ArrayList<>();
+        Item healthPotion = new HealthPotion(tileMap, Item.HEALTH_POTION);
+        healthPotion.setPosition(180, 100);
+        items.add(healthPotion);
+
+        Item boostPotion = new Item(tileMap, Item.BOOST_POTION);
+        boostPotion.setPosition(840, 200);
+        items.add(boostPotion);
+
+        Item damagePotion = new Item(tileMap, Item.DAMAGE_POTION);
+        damagePotion.setPosition(970, 200);
+        items.add(damagePotion);
+    }
+
     @Override
     public void update() {
         player.update();
@@ -82,15 +99,30 @@ public class Level1State extends GameState {
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
         player.checkAttack(enemies);
+        player.checkItemPickup(items);
 
         // update all enemies
         for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
             e.update();
-            if (e.isDeaad()) {
+            if (e.isDead()) {
                 enemies.remove(i);
                 i--;
                 // add explosions
+            }
+        }
+
+        // update all items
+        /*
+        give player powers
+         */
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            item.update();
+            if (item.shouldRemove()) {
+                inventory.addInventoryItem(item);
+                items.remove(i);
+                i--;
             }
         }
 
@@ -112,6 +144,11 @@ public class Level1State extends GameState {
         // draw enemies
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).draw(g);
+        }
+
+        // draw items
+        for (int i = 0; i < items.size(); i++) {
+            items.get(i).draw(g);
         }
 
         // draw explosions

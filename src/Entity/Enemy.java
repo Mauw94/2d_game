@@ -15,7 +15,7 @@ public class Enemy extends MapObject {
         super(tm);
     }
 
-    public boolean isDeaad() { return dead; }
+    public boolean isDead() { return dead; }
     public int getDamage() { return damage; }
 
     public void hit(int damage) {

@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Items.Item;
 import Main.GamePanel;
 import TileMap.TileMap;
 
@@ -10,19 +11,25 @@ public class Inventory extends MapObject {
 
     private Player player;
     private Font font;
+    public static final int MAX_INVENTORY_SPACE = 5;
     public ArrayList<Item> inventory;
     private int currentItem = 0;
 
     public Inventory(TileMap tm, Player p) {
         super(tm);
         this.player = p;
-        inventory = new ArrayList<Item>();
+        inventory = new ArrayList<>();
         font = new Font("Arial", Font.PLAIN, 12);
     }
 
-    public ArrayList<Item> getInventory() { return inventory; }
-    public void addInventoryItem(Item item) { inventory.add(item); }
     public String inventoryBelongsTo() { return this.player.getPlayerName(); }
+
+    public ArrayList<Item> getInventory() { return inventory; }
+
+    public void addInventoryItem(Item item) {
+        if (player.getInventorySize() == MAX_INVENTORY_SPACE) { return; }
+        inventory.add(item);
+    }
 
     public void useItem() {
         if (this.inventory.size() == 0) return;
@@ -30,17 +37,14 @@ public class Inventory extends MapObject {
 
         // remove the item
         this.inventory.remove(currentItem);
+        currentItem = 0;
 
         // remove item from player
-        this.player.removeInventoryItem(currentItem);
+        this.player.removeItem(currentItem);
     }
 
     private Item getCurrentItem() {
         return this.inventory.get(currentItem);
-    }
-
-    private void loadImages() {
-
     }
 
     public void draw(Graphics2D g) {

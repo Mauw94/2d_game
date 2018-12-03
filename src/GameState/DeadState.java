@@ -49,7 +49,7 @@ public class DeadState extends GameState {
     private void select() {
         if (currentChoice == 0) {
             gsm.setState(GameStateManager.LEVEL1STATE);
-        } else {
+        } else if (currentChoice == options.length - 1){
             gsm.setState(GameStateManager.MENUSTATE);
         }
     }
