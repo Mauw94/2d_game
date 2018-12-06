@@ -172,7 +172,6 @@ public class Player extends MapObject {
         return maxFire;
     }
 
-    public double getMovespeed() { return moveSpeed; }
     public void setMaxSpeed(double s) { this.maxSpeed = s; }
 
     public void setFiring() {
@@ -186,8 +185,6 @@ public class Player extends MapObject {
     public void setGliding(boolean b) {
         gliding = b;
     }
-
-    public String getPlayerName() { return playerName; }
 
     public Inventory getInventory() {
         return inventory;
@@ -244,7 +241,7 @@ public class Player extends MapObject {
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
             if (intersects(item) && getInventorySize() < Inventory.MAX_INVENTORY_SPACE) {
-                item.setRemove(true);
+                item.removeItemFromWorld(true);
             }
         }
     }
@@ -325,7 +322,7 @@ public class Player extends MapObject {
         setPosition(xtemp, ytemp);
 
         // log stuff here
-        // System.out.println("maxspeed: " + maxSpeed);
+        // System.out.println(x + " " + y);
 
         // check attack has stopped
         if (currentAction == SCRATCHING) {
@@ -448,9 +445,7 @@ public class Player extends MapObject {
                 return;
             }
         }
-
         super.draw(g);
-
     }
 
 }

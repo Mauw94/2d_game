@@ -9,8 +9,7 @@ import java.util.TimerTask;
 
 public class BoostPotion extends Item {
 
-    public double boost;
-    public double startBoost;
+    private double boost;
     private Player player;
     private boolean bonusStarted;
 
@@ -19,15 +18,14 @@ public class BoostPotion extends Item {
 
         this.player = player;
 
-        startBoost = 0.5;
-        boost = 1.5;
+        boost = 2.2;
 
         bonusStarted = false;
     }
 
     @Override
     public boolean executeItemEffect() {
-        player.setMaxSpeed(2.2);
+        player.setMaxSpeed(this.boost);
         bonusStarted = true;
         if (bonusStarted) {
             Timer timer = new Timer();
@@ -47,7 +45,11 @@ public class BoostPotion extends Item {
    }
 
    public void draw(Graphics2D g) {
-        super.draw(g);
+        if (bonusStarted) {
+            g.setColor(Color.RED);
+            g.drawString("SPEED BOOST ACTIVATED!", 50, 50);
+        }
+       super.draw(g);
    }
 
 }

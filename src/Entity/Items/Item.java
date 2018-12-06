@@ -69,7 +69,7 @@ public abstract class Item extends MapObject {
     public String getItemName() { return this.name; }
     public String getItemNameShort() { return this.name.substring(0, 1); }
     public boolean shouldRemove() { return remove; }
-    public void setRemove(boolean r) { this.remove = r; }
+    public void removeItemFromWorld(boolean r) { this.remove = r; }
 
     public abstract boolean executeItemEffect();
 

@@ -1,6 +1,7 @@
 package GameState;
 
 import Entity.*;
+import Entity.Enemies.LevelOneBoss;
 import Entity.Enemies.Slugger;
 import Entity.Items.BoostPotion;
 import Entity.Items.HealthPotion;
@@ -45,7 +46,7 @@ public class Level1State extends GameState {
         bg.setPosition(100, 100);
 
         player = new Player(tileMap);
-        player.setPosition(100, 100);
+        player.setPosition(2900, 200);
 
         inventory = player.getInventory();
 
@@ -58,7 +59,7 @@ public class Level1State extends GameState {
     }
 
     private void populateEnemies() {
-        enemies = new ArrayList<Enemy>();
+        enemies = new ArrayList<>();
         Slugger s;
         Point[] points = new Point[] {
                 new Point(200, 100),
@@ -72,6 +73,10 @@ public class Level1State extends GameState {
             s.setPosition(points[i].x, points[i].y);
             enemies.add(s);
         }
+
+        LevelOneBoss b = new LevelOneBoss(tileMap);
+        b.setPosition(3050, 200);
+        enemies.add(b);
     }
 
     private void createItemsInWorld() {
@@ -109,7 +114,7 @@ public class Level1State extends GameState {
             }
         }
 
-        // update all itemsInWorld
+        // update all items in the world
         for (int i = 0; i < itemsInWorld.size(); i++) {
             Item item = itemsInWorld.get(i);
             item.update();
@@ -120,9 +125,7 @@ public class Level1State extends GameState {
             }
         }
 
-        if (player.isDead()) {
-            gsm.setState(GameStateManager.DEADSTATE);
-        }
+        if (player.isDead()) { gsm.setState(GameStateManager.DEADSTATE); }
 
         // update explosions
     }
@@ -140,7 +143,7 @@ public class Level1State extends GameState {
             enemies.get(i).draw(g);
         }
 
-        // draw itemsInWorld
+        // draw items in the world
         for (int i = 0; i < itemsInWorld.size(); i++) {
             itemsInWorld.get(i).draw(g);
         }

@@ -21,6 +21,7 @@ public class Enemy extends MapObject {
     public void hit(int damage) {
         if (dead || flinching) return;
         health -= damage;
+        System.out.println("remaining hp: " + health);
         if (health < 0) health = 0;
         if (health == 0) dead = true;
         flinching = true;
