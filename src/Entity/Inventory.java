@@ -22,11 +22,6 @@ public class Inventory extends MapObject {
         font = new Font("Arial", Font.PLAIN, 12);
     }
 
-    public String inventoryBelongsTo() { return this.player.getPlayerName(); }
-    private Item getCurrentItem() {
-        return this.inventory.get(currentItem);
-    }
-
     public ArrayList<Item> getInventory() { return inventory; }
 
     public void addItemToInventory(Item item) {

@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="010aa15e-221e-4b93-a702-e4f925938067" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/Items/DamagePotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2d_platformer/Entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2d_platformer/Entity/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2d_platformer/GameState/GameStateManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2d_platformer/GameState/GameStateManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2d_platformer/GameState/Level1State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2d_platformer/GameState/Level1State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/2d_platformer/GameState/MenuState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/2d_platformer/GameState/MenuState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Enemies/Slugger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Enemies/Slugger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Items/BoostPotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Items/BoostPotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Items/HealthPotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Items/HealthPotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameState/DeadState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameState/DeadState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameState/GameStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameState/GameStateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameState/Level1State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameState/Level1State.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,14 +24,14 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gif" value="2" />
-          <entry key="java" value="34" />
+          <entry key="java" value="36" />
           <entry key="map" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="2" />
-          <entry key="JAVA" value="34" />
+          <entry key="JAVA" value="36" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -126,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Entity/Inventory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+            <state relative-caret-position="380">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Items/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <state relative-caret-position="220">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,11 +148,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Items/DamagePotion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+            <state relative-caret-position="176">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#691#884#0" expanded="true" />
@@ -177,13 +163,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Items/HealthPotion.java">
+        <entry file="file://$PROJECT_DIR$/src/Entity/ItemUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="40">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -232,7 +215,6 @@
         <option value="$PROJECT_DIR$/src/TileMap/TileMap.java" />
         <option value="$PROJECT_DIR$/src/Entity/MapObject.java" />
         <option value="$PROJECT_DIR$/src/GameState/Level1State.java" />
-        <option value="$PROJECT_DIR$/src/Entity/Inventory.java" />
         <option value="$PROJECT_DIR$/src/GameState/DeadState.java" />
         <option value="$PROJECT_DIR$/src/GameState/GameStateManager.java" />
         <option value="$PROJECT_DIR$/src/Entity/Enemies/Slugger.java" />
@@ -241,6 +223,7 @@
         <option value="$PROJECT_DIR$/src/Entity/Items/HealthPotion.java" />
         <option value="$PROJECT_DIR$/src/Entity/Player.java" />
         <option value="$PROJECT_DIR$/src/Entity/Items/DamagePotion.java" />
+        <option value="$PROJECT_DIR$/src/Entity/Inventory.java" />
       </list>
     </option>
   </component>
@@ -380,7 +363,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.idea/workspace.xml" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544104007411" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544106194582" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -474,8 +457,8 @@
     <frame x="-1" y="6" width="1715" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16435045" />
-      <window_info id="Structure" order="1" visible="true" weight="0.17039275" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16435045" />
+      <window_info id="Structure" order="1" weight="0.17039275" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -577,13 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="17" column="53" lean-forward="true" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameState/DrawTextToScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -692,36 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Inventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Items/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Items/HealthPotion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-991">
@@ -760,12 +706,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Items/DamagePotion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        <state relative-caret-position="176">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#691#884#0" expanded="true" />
             <element signature="e#883#884#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Items/HealthPotion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/ItemUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameState/DrawTextToScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Items/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Inventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
