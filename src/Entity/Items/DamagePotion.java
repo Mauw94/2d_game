@@ -7,47 +7,39 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class BoostPotion extends Item {
+public class DamagePotion extends Item {
 
-    public double boost;
-    public double startBoost;
     private Player player;
+    private int bonusDamage;
     private boolean bonusStarted;
 
-    public BoostPotion(TileMap tm, int type, Player player) {
+    public DamagePotion(TileMap tm, int type, Player player) {
         super(tm, type);
 
-        this.player = player;
-
-        startBoost = 0.5;
-        boost = 1.5;
-
         bonusStarted = false;
+
+        this.player = player;
+        this.bonusDamage = 3;
     }
 
     @Override
     public boolean executeItemEffect() {
-        player.setMaxSpeed(2.2);
+        player.addBonusDamage(this.bonusDamage);
         bonusStarted = true;
         if (bonusStarted) {
             Timer timer = new Timer();
             TimerTask task = new TimerTask() {
+                @Override
                 public void run() {
-                    player.setMaxSpeed(1.6);
+                    player.resetDamageNumbers();
                     bonusStarted = false;
                 }
             };
-            timer.schedule(task, 4000);
+            timer.schedule(task, 3500);
         }
         return true;
-   }
+    }
 
-   public void update() {
-       super.update();
-   }
-
-   public void draw(Graphics2D g) {
-        super.draw(g);
-   }
-
+    public void update() { super.update(); }
+    public void draw(Graphics2D g) { super.draw(g); }
 }

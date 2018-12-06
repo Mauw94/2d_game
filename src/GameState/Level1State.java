@@ -160,7 +160,7 @@ public class Level1State extends GameState {
         if(k == KeyEvent.VK_F) player.setFiring();
         if(k == KeyEvent.VK_A) inventory.cycleLeft();
         if(k == KeyEvent.VK_D) inventory.cycleRight();
-        if(k == KeyEvent.VK_SPACE) inventory.useItem();
+        if(k == KeyEvent.VK_SPACE) inventory.useSelectedInventoryItem();
     }
 
     @Override

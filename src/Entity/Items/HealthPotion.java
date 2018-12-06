@@ -12,7 +12,9 @@ public class HealthPotion extends Item {
 
     public HealthPotion(TileMap tm, int type, Player player) {
         super(tm, type);
+
         this.player = player;
+
         hp = 1;
     }
 

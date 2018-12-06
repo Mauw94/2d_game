@@ -34,7 +34,7 @@ public class Inventory extends MapObject {
         inventory.add(item);
     }
 
-    public void useItem() {
+    public void useSelectedInventoryItem() {
         if (this.inventory.size() == 0) return;
 
         // benefits of the item onto the player or world

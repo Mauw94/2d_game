@@ -1,6 +1,7 @@
 package Entity;
 
 import Entity.Items.BoostPotion;
+import Entity.Items.DamagePotion;
 import Entity.Items.HealthPotion;
 import Entity.Items.Item;
 import Main.GamePanel;
@@ -65,6 +66,7 @@ public class Player extends MapObject {
         startingItems = new ArrayList<>();
         startingItems.add(new HealthPotion(tm, Item.HEALTH_POTION, this));
         startingItems.add(new BoostPotion(tm, Item.BOOST_POTION, this));
+        startingItems.add(new DamagePotion(tm, Item.DAMAGE_POTION, this));
 
         inventory = new Inventory(tm,this);
         for (Item i : startingItems) {
@@ -91,10 +93,10 @@ public class Player extends MapObject {
         fire = maxFire = 2500;
 
         fireCost = 200;
-        fireBallDamage = 5;
+        fireBallDamage = 3;
         fireBalls = new ArrayList<>();
 
-        scratchDamage = 8;
+        scratchDamage = 4;
         scratchRange = 40;
 
         // load sprites
@@ -150,6 +152,16 @@ public class Player extends MapObject {
 
     public void addHealth(int hp) {
         health += hp;
+    }
+
+    public void addBonusDamage(int dmg) {
+        this.fireBallDamage += dmg;
+        this.scratchDamage += dmg;
+    }
+
+    public void resetDamageNumbers() {
+        this.fireBallDamage = 3;
+        this.scratchDamage = 4;
     }
 
     public int getFire() {

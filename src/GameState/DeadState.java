@@ -22,7 +22,7 @@ public class DeadState extends GameState {
             bg = new Background("/Backgrounds/menubg.gif", 1);
             bg.setVector(-1.9, 0);
             title = "You have died.";
-            titleFont = new Font("Century Gother", Font.PLAIN, 28);
+            titleFont = new Font("Century Gothic", Font.PLAIN, 28);
 
         } catch (Exception e) {}
     }
