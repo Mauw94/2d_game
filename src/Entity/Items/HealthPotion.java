@@ -17,7 +17,7 @@ public class HealthPotion extends Item {
     }
 
     @Override
-    public boolean addBonus() {
+    public boolean executeItemEffect() {
         if (player.getHealth() == player.getMaxHealth()) return false;
         player.addHealth(hp);
         return true;

@@ -26,7 +26,7 @@ public class BoostPotion extends Item {
     }
 
     @Override
-    public boolean addBonus() {
+    public boolean executeItemEffect() {
         player.setMaxSpeed(2.2);
         bonusStarted = true;
         if (bonusStarted) {

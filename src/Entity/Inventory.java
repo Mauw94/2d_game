@@ -23,10 +23,13 @@ public class Inventory extends MapObject {
     }
 
     public String inventoryBelongsTo() { return this.player.getPlayerName(); }
+    private Item getCurrentItem() {
+        return this.inventory.get(currentItem);
+    }
 
     public ArrayList<Item> getInventory() { return inventory; }
 
-    public void addInventoryItem(Item item) {
+    public void addItemToInventory(Item item) {
         if (player.getInventorySize() == MAX_INVENTORY_SPACE) { return; }
         inventory.add(item);
     }
@@ -35,18 +38,11 @@ public class Inventory extends MapObject {
         if (this.inventory.size() == 0) return;
 
         // benefits of the item onto the player or world
-        if (!this.inventory.get(currentItem).addBonus()) return;
+        if (!this.inventory.get(currentItem).executeItemEffect()) return;
 
-        // remove the item
+        // remove the item from inventory
         this.inventory.remove(currentItem);
-        currentItem = 0;
-
-        // remove item from player
-        this.player.removeItem(currentItem);
-    }
-
-    private Item getCurrentItem() {
-        return this.inventory.get(currentItem);
+        currentItem = this.inventory.size() - 1;
     }
 
     public void draw(Graphics2D g) {

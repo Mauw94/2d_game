@@ -23,7 +23,7 @@ public class Player extends MapObject {
     private boolean flinching;
     private long flinchTimer;
     private Inventory inventory;
-    private ArrayList<Item> items;
+    private ArrayList<Item> startingItems;
     private String playerName;
 
     // fireball
@@ -62,13 +62,13 @@ public class Player extends MapObject {
         super(tm);
 
         playerName = "New Player";
-        items = new ArrayList<>();
-        items.add(new HealthPotion(tm, Item.HEALTH_POTION, this));
-        items.add(new BoostPotion(tm, Item.BOOST_POTION, this));
+        startingItems = new ArrayList<>();
+        startingItems.add(new HealthPotion(tm, Item.HEALTH_POTION, this));
+        startingItems.add(new BoostPotion(tm, Item.BOOST_POTION, this));
 
         inventory = new Inventory(tm,this);
-        for (Item i : items) {
-            inventory.addInventoryItem(i);
+        for (Item i : startingItems) {
+            inventory.addItemToInventory(i);
         }
 
         width = 30;
@@ -183,10 +183,6 @@ public class Player extends MapObject {
 
     public int getInventorySize() {
         return inventory.getInventory().size();
-    }
-
-    public void removeItem(int currentItem) {
-        items.remove(currentItem);
     }
 
     public void checkAttack(ArrayList<Enemy> enemies) {
@@ -327,7 +323,7 @@ public class Player extends MapObject {
             if (animation.hasPlayedOnce()) firing = false;
         }
 
-        // update items
+        // update startingItems
         for (int i = 0; i < inventory.getInventory().size(); i++) {
             inventory.getInventory().get(i).update();
         }

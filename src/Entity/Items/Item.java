@@ -70,7 +70,7 @@ public abstract class Item extends MapObject {
     public boolean shouldRemove() { return remove; }
     public void setRemove(boolean r) { this.remove = r; }
 
-    public abstract boolean addBonus();
+    public abstract boolean executeItemEffect();
 
     private void getNextPosition() {
         if (falling) {
