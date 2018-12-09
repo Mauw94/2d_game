@@ -1,10 +1,11 @@
 package GameState;
 
+import Entity.*;
+import Entity.Enemies.LevelOneBoss;
 import Entity.Enemies.Slugger;
-import Entity.Enemy;
-import Entity.HUD;
-import Entity.Inventory;
-import Entity.Player;
+import Entity.Items.BoostPotion;
+import Entity.Items.HealthPotion;
+import Entity.Items.Item;
 import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
@@ -26,6 +27,8 @@ public class Level1State extends GameState {
     private HUD hud;
     private Inventory inventory;
 
+    private ArrayList<Item> itemsInWorld;
+
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
@@ -43,7 +46,7 @@ public class Level1State extends GameState {
         bg.setPosition(100, 100);
 
         player = new Player(tileMap);
-        player.setPosition(100, 100);
+        player.setPosition(2900, 200);
 
         inventory = player.getInventory();
 
@@ -52,10 +55,11 @@ public class Level1State extends GameState {
         hud = new HUD(player);
 
         populateEnemies();
+        createItemsInWorld();
     }
 
     private void populateEnemies() {
-        enemies = new ArrayList<Enemy>();
+        enemies = new ArrayList<>();
         Slugger s;
         Point[] points = new Point[] {
                 new Point(200, 100),
@@ -69,6 +73,21 @@ public class Level1State extends GameState {
             s.setPosition(points[i].x, points[i].y);
             enemies.add(s);
         }
+
+        LevelOneBoss b = new LevelOneBoss(tileMap);
+        b.setPosition(3050, 200);
+        enemies.add(b);
+    }
+
+    private void createItemsInWorld() {
+        itemsInWorld = new ArrayList<>();
+        Item healthPotion = new HealthPotion(tileMap, Item.HEALTH_POTION, player);
+        healthPotion.setPosition(180, 100);
+        itemsInWorld.add(healthPotion);
+
+        Item boostPotion = new BoostPotion(tileMap, Item.BOOST_POTION, player);
+        boostPotion.setPosition(840, 200);
+        itemsInWorld.add(boostPotion);
     }
 
     @Override
@@ -82,21 +101,31 @@ public class Level1State extends GameState {
         bg.setPosition(tileMap.getx(), tileMap.gety());
 
         player.checkAttack(enemies);
+        player.checkItemPickup(itemsInWorld);
 
         // update all enemies
         for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
             e.update();
-            if (e.isDeaad()) {
+            if (e.isDead()) {
                 enemies.remove(i);
                 i--;
                 // add explosions
             }
         }
 
-        if (player.isDead()) {
-            gsm.setState(GameStateManager.DEADSTATE);
+        // update all items in the world
+        for (int i = 0; i < itemsInWorld.size(); i++) {
+            Item item = itemsInWorld.get(i);
+            item.update();
+            if (item.shouldRemove()) {
+                inventory.addItemToInventory(item);
+                itemsInWorld.remove(i);
+                i--;
+            }
         }
+
+        if (player.isDead()) { gsm.setState(GameStateManager.DEADSTATE); }
 
         // update explosions
     }
@@ -114,6 +143,11 @@ public class Level1State extends GameState {
             enemies.get(i).draw(g);
         }
 
+        // draw items in the world
+        for (int i = 0; i < itemsInWorld.size(); i++) {
+            itemsInWorld.get(i).draw(g);
+        }
+
         // draw explosions
     }
 
@@ -129,7 +163,7 @@ public class Level1State extends GameState {
         if(k == KeyEvent.VK_F) player.setFiring();
         if(k == KeyEvent.VK_A) inventory.cycleLeft();
         if(k == KeyEvent.VK_D) inventory.cycleRight();
-        if(k == KeyEvent.VK_ENTER) inventory.useItem();
+        if(k == KeyEvent.VK_SPACE) inventory.useSelectedInventoryItem();
     }
 
     @Override
