@@ -45,19 +45,19 @@ public abstract class Item extends MapObject {
 
     private void createItem(int type) throws IOException  {
         switch (type) {
-            case 0:
+            case HEALTH_POTION:
                 this.name = "Health Potion";
                 image = ImageIO.read(getClass().getResourceAsStream("/Items/health_potion.gif"));
                 break;
-            case 1:
+            case BOOST_POTION:
                 this.name = "Boost Potion";
                 image = ImageIO.read(getClass().getResourceAsStream("/Items/boost_potion.gif"));
                 break;
-            case 2:
+            case DAMAGE_POTION:
                 this.name = "Damage Potion";
                 image = ImageIO.read(getClass().getResourceAsStream("/Items/damage_potion.gif"));
                 break;
-            case 3:
+            case FIRE_POTION:
                 this.name = "Fire Potion";
                 image = ImageIO.read(getClass().getResourceAsStream("/Items/fire_potion.gif"));
                 break;
