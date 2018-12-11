@@ -29,6 +29,8 @@ public class Level1State extends GameState {
 
     private ArrayList<Item> itemsInWorld;
 
+    private boolean levelOneEnd;
+
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
         init();
@@ -44,6 +46,8 @@ public class Level1State extends GameState {
 
         bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
         bg.setPosition(100, 100);
+
+        levelOneEnd = false;
 
         player = new Player(tileMap);
         player.setPosition(2900, 200);
@@ -108,6 +112,9 @@ public class Level1State extends GameState {
             Enemy e = enemies.get(i);
             e.update();
             if (e.isDead()) {
+                if (e instanceof LevelOneBoss) {
+                    levelOneEnd = true;
+                }
                 enemies.remove(i);
                 i--;
                 // add explosions
@@ -126,7 +133,7 @@ public class Level1State extends GameState {
         }
 
         if (player.isDead()) { gsm.setState(GameStateManager.DEADSTATE); }
-
+        if (levelOneEnd) { gsm.setState(GameStateManager.HELPSTATE); }
         // update explosions
     }
 
