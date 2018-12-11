@@ -14,7 +14,6 @@ public class HealthPotion extends Item {
         super(tm, type);
 
         this.player = player;
-
         hp = 1;
     }
 
@@ -29,7 +28,5 @@ public class HealthPotion extends Item {
         super.update();
     }
 
-    public void draw(Graphics2D g) {
-        super.draw(g);
-    }
+    public void draw(Graphics2D g) { super.draw(g); }
 }
