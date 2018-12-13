@@ -74,6 +74,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.gitignore
 .idea/inspectionProfiles/
 .idea/vcs.xml
 .vscode/
