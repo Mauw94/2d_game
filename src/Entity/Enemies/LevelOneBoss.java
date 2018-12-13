@@ -69,16 +69,7 @@ public class LevelOneBoss extends Enemy {
             }
         }
 
-        // if hit walls, go other direction
-        if (right && dx == 0) {
-            right = false;
-            left = true;
-            facingRight = false;
-        } else if (left && dx == 0) {
-            right = true;
-            left = false;
-            facingRight = true;
-        }
+        changeDirectionIfWallHit();
     }
 
     public void draw(Graphics2D g) {

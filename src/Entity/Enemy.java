@@ -28,5 +28,18 @@ public class Enemy extends MapObject {
         flinchTimer = System.nanoTime();
     }
 
+    public void changeDirectionIfWallHit() {
+        // if hit walls, go other direction
+        if (right && dx == 0) {
+            right = false;
+            left = true;
+            facingRight = false;
+        } else if (left && dx == 0) {
+            right = true;
+            left = false;
+            facingRight = true;
+        }
+    }
+
     public void update() {}
 }
