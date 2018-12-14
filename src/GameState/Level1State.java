@@ -30,6 +30,7 @@ public class Level1State extends GameState {
     private ArrayList<Item> itemsInWorld;
 
     private boolean levelOneEnd;
+    private Score levelScore;
 
     public Level1State(GameStateManager gsm) {
         this.gsm = gsm;
@@ -48,9 +49,10 @@ public class Level1State extends GameState {
         bg.setPosition(100, 100);
 
         levelOneEnd = false;
+        levelScore = new Score();
 
         player = new Player(tileMap);
-        player.setPosition(2900, 200);
+        player.setPosition(100, 200);
 
         inventory = player.getInventory();
 
@@ -96,32 +98,49 @@ public class Level1State extends GameState {
 
     @Override
     public void update() {
-        player.update();
 
+        setWorldPositions();
+
+        player.update();
+        player.checkAttack(enemies);
+        player.checkItemPickup(itemsInWorld);
+
+        updateWorldEnemies();
+
+        updateWorldItems();
+
+        if (player.isDead()) { gsm.setState(GameStateManager.DEADSTATE); }
+        if (levelOneEnd) {
+            System.out.println(this.levelScore.getLevelScore());
+            gsm.setState(GameStateManager.LEVELENDSTATE);
+        }
+    }
+
+    private void setWorldPositions() {
         tileMap.setPosition(
                 GamePanel.WIDTH / 2 - player.getx(),
                 GamePanel.HEIGHT / 2 - player.gety());
 
         bg.setPosition(tileMap.getx(), tileMap.gety());
+    }
 
-        player.checkAttack(enemies);
-        player.checkItemPickup(itemsInWorld);
-
-        // update all enemies
+    private void updateWorldEnemies() {
         for (int i = 0; i < enemies.size(); i++) {
             Enemy e = enemies.get(i);
             e.update();
             if (e.isDead()) {
+                this.levelScore.addPoints(2);
                 if (e instanceof LevelOneBoss) {
                     levelOneEnd = true;
+                    this.levelScore.addPoints(5);
                 }
                 enemies.remove(i);
                 i--;
-                // add explosions
             }
         }
+    }
 
-        // update all items in the world
+    private void updateWorldItems() {
         for (int i = 0; i < itemsInWorld.size(); i++) {
             Item item = itemsInWorld.get(i);
             item.update();
@@ -131,10 +150,6 @@ public class Level1State extends GameState {
                 i--;
             }
         }
-
-        if (player.isDead()) { gsm.setState(GameStateManager.DEADSTATE); }
-        if (levelOneEnd) { gsm.setState(GameStateManager.LEVELENDSTATE); }
-        // update explosions
     }
 
     @Override

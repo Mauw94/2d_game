@@ -47,6 +47,8 @@ public class Player extends MapObject {
             2, 8, 1, 2, 4, 2, 5
     };
 
+    private int levelScore = 0;
+
     // animation actions
     private static final int IDLE = 0;
     private static final int WALKING = 1;
