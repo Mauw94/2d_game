@@ -6,11 +6,13 @@ public class GameStateManager {
     private GameState[] gameStates;
     private int currentState;
 
-    public static final int NUMGAMESTATES = 4;
+    public static final int NUMGAMESTATES = 6;
     public static final int MENUSTATE = 0;
     public static final int HELPSTATE = 1;
     public static final int DEADSTATE = 2;
-    public static final int LEVEL1STATE = 3;
+    public static final int LEVELENDSTATE = 3;
+    public static final int LEVEL1STATE = 4;
+    public static final int LEVEL2STATE = 5;
 
     public GameStateManager() {
         gameStates = new GameState[NUMGAMESTATES];
@@ -27,13 +29,18 @@ public class GameStateManager {
             case HELPSTATE:
                 gameStates[state] = new HelpState(this);
                 break;
-            case LEVEL1STATE:
-                gameStates[state] = new Level1State(this);
-                break;
             case DEADSTATE:
                 gameStates[state] = new DeadState(this);
                 break;
-
+            case LEVELENDSTATE:
+                gameStates[state] = new LevelEndState(this);
+                break;
+            case LEVEL1STATE:
+                gameStates[state] = new Level1State(this);
+                break;
+            case LEVEL2STATE:
+                gameStates[state] = new Level2State(this);
+                break;
         }
     }
 

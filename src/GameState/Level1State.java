@@ -133,7 +133,7 @@ public class Level1State extends GameState {
         }
 
         if (player.isDead()) { gsm.setState(GameStateManager.DEADSTATE); }
-        if (levelOneEnd) { gsm.setState(GameStateManager.HELPSTATE); }
+        if (levelOneEnd) { gsm.setState(GameStateManager.LEVELENDSTATE); }
         // update explosions
     }
 
