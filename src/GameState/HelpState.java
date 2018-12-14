@@ -13,7 +13,10 @@ public class HelpState extends GameState {
             "W to jump",
             "R to scratch attack",
             "F to fireball attack",
-            "E to glide"
+            "E to glide",
+            "A and D to cycle",
+            "through inventory",
+            "SPACE to use potion"
     };
     private Background bg;
 

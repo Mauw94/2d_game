@@ -99,9 +99,14 @@ public class Level1State extends GameState {
     @Override
     public void update() {
 
+        /*
+        if the world positions are updated before the player
+        the player animations lag..
+         */
+        player.update();
+
         setWorldPositions();
 
-        player.update();
         player.checkAttack(enemies);
         player.checkItemPickup(itemsInWorld);
 
@@ -129,10 +134,14 @@ public class Level1State extends GameState {
             Enemy e = enemies.get(i);
             e.update();
             if (e.isDead()) {
-                this.levelScore.addPoints(2);
+                if (e.isDeadByScratching()) {
+                    this.levelScore.addPoints(3);
+                } else {
+                    this.levelScore.addPoints(2);
+                }
                 if (e instanceof LevelOneBoss) {
-                    levelOneEnd = true;
                     this.levelScore.addPoints(5);
+                    levelOneEnd = true;
                 }
                 enemies.remove(i);
                 i--;

@@ -209,7 +209,7 @@ public class Player extends MapObject {
                         e.gety() > y - height / 2 &&
                         e.gety() < y + height / 2
                     ) {
-                        e.hit(scratchDamage);
+                        e.hit(scratchDamage, scratching);
                     }
 
                 } else {
@@ -218,7 +218,7 @@ public class Player extends MapObject {
                         e.gety() > y - height / 2 &&
                         e.gety() < y + height / 2
                     ) {
-                        e.hit(scratchDamage);
+                        e.hit(scratchDamage, scratching);
                     }
                 }
             }
@@ -226,7 +226,7 @@ public class Player extends MapObject {
             // fireballs
             for (int j = 0; j < fireBalls.size(); j++) {
                 if (fireBalls.get(j).intersects(e)) {
-                    e.hit(fireBallDamage);
+                    e.hit(fireBallDamage, scratching);
                     fireBalls.get(j).setHit();
                     break;
                 }

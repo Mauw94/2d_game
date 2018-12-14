@@ -6,6 +6,7 @@ public class Enemy extends MapObject {
     protected int health;
     protected int maxHealth;
     protected boolean dead;
+    protected boolean deadByScratching;
     protected int damage;
 
     protected boolean flinching;
@@ -16,12 +17,13 @@ public class Enemy extends MapObject {
     }
 
     public boolean isDead() { return dead; }
+    public boolean isDeadByScratching() { return deadByScratching; }
     public int getDamage() { return damage; }
 
-    public void hit(int damage) {
+    public void hit(int damage, boolean playerAttack) {
         if (dead || flinching) return;
         health -= damage;
-        System.out.println("remaining hp: " + health);
+        deadByScratching = playerAttack;
         if (health < 0) health = 0;
         if (health == 0) dead = true;
         flinching = true;
