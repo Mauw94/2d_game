@@ -71,6 +71,7 @@ public class Level1State extends GameState {
         Slugger s;
         Point[] points = new Point[] {
                 new Point(200, 100),
+                new Point(300, 100),
                 new Point(860, 200),
                 new Point(1525, 200),
                 new Point(1680, 200),
@@ -138,7 +139,8 @@ public class Level1State extends GameState {
             if (e.isDead()) {
                 // enemy can drop an item
                 if (e.dropSmallLoot()) {
-
+                    System.out.println(e.getDroppedItemType());
+                    // create new item and addd to the world at the position the enemy died
                 }
                 if (e.isDeadByScratching()) {
                     this.levelScore.addPoints(3);

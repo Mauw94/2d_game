@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Items.Item;
 import TileMap.TileMap;
 
 import java.util.Random;
@@ -10,11 +11,13 @@ public class Enemy extends MapObject {
     protected boolean dead;
     protected boolean deadByScratching;
     protected int damage;
+    protected int droppedItemType;
 
     protected boolean flinching;
     protected long flinchTimer;
 
     protected Random rndLoot;
+    protected Random rndItem;
 
     public Enemy(TileMap tm) {
         super(tm);
@@ -23,6 +26,7 @@ public class Enemy extends MapObject {
     public boolean isDead() { return dead; }
     public boolean isDeadByScratching() { return deadByScratching; }
     public int getDamage() { return damage; }
+    public int getDroppedItemType() { return droppedItemType; }
 
     public void hit(int damage, boolean playerAttack) {
         if (dead || flinching) return;
@@ -38,8 +42,9 @@ public class Enemy extends MapObject {
         rndLoot = new Random();
         int loot = rndLoot.nextInt(3) + 1;
         if (loot == 1) {
-            // determine item to drop
-
+            rndItem = new Random();
+            int itemType = rndItem.nextInt(Item.MAX_ITEMS) + 0;
+            this.droppedItemType = itemType;
             return true;
         } else {
             return false;
