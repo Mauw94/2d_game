@@ -141,10 +141,6 @@ public class Level1State extends GameState {
                 // enemy can drop an item
                 if (e.dropSmallLoot()) {
                     int itemType = e.getDroppedItemType();
-                    System.out.println(itemType);
-                    /*
-                    bugged, created items cannot be used
-                     */
                     Item item = Item.createItemFromLoot(tileMap, itemType, player);
                     if (item != null) {
                         item.setPosition(e.getx(), e.gety());
