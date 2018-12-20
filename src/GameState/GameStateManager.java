@@ -1,5 +1,8 @@
 package GameState;
 
+import GameState.Levels.Level1State;
+import GameState.Levels.Level2State;
+
 import java.awt.*;
 
 public class GameStateManager {

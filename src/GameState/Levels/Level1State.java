@@ -1,4 +1,4 @@
-package GameState;
+package GameState.Levels;
 
 import Entity.*;
 import Entity.Enemies.LevelOneBoss;
@@ -6,6 +6,8 @@ import Entity.Enemies.Slugger;
 import Entity.Items.BoostPotion;
 import Entity.Items.HealthPotion;
 import Entity.Items.Item;
+import GameState.GameState;
+import GameState.GameStateManager;
 import Main.GamePanel;
 import TileMap.TileMap;
 import TileMap.Background;
@@ -134,6 +136,10 @@ public class Level1State extends GameState {
             Enemy e = enemies.get(i);
             e.update();
             if (e.isDead()) {
+                // enemy can drop an item
+                if (e.dropSmallLoot()) {
+
+                }
                 if (e.isDeadByScratching()) {
                     this.levelScore.addPoints(3);
                 } else {

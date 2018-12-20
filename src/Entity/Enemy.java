@@ -2,6 +2,8 @@ package Entity;
 
 import TileMap.TileMap;
 
+import java.util.Random;
+
 public class Enemy extends MapObject {
     protected int health;
     protected int maxHealth;
@@ -11,6 +13,8 @@ public class Enemy extends MapObject {
 
     protected boolean flinching;
     protected long flinchTimer;
+
+    protected Random rndLoot;
 
     public Enemy(TileMap tm) {
         super(tm);
@@ -28,6 +32,18 @@ public class Enemy extends MapObject {
         if (health == 0) dead = true;
         flinching = true;
         flinchTimer = System.nanoTime();
+    }
+
+    public boolean dropSmallLoot() {
+        rndLoot = new Random();
+        int loot = rndLoot.nextInt(3) + 1;
+        if (loot == 1) {
+            // determine item to drop
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void changeDirectionIfWallHit() {
