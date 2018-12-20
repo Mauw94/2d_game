@@ -9,16 +9,14 @@ import java.util.TimerTask;
 
 public class DamagePotion extends Item {
 
-    private Player player;
     private int bonusDamage;
     private boolean bonusStarted;
 
     public DamagePotion(TileMap tm, int type, Player player) {
-        super(tm, type);
+        super(tm, type, player);
 
         bonusStarted = false;
 
-        this.player = player;
         this.bonusDamage = 3;
     }
 

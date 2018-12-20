@@ -8,12 +8,10 @@ import java.awt.*;
 public class HealthPotion extends Item {
 
     public int hp;
-    private Player player;
 
     public HealthPotion(TileMap tm, int type, Player player) {
-        super(tm, type);
+        super(tm, type, player);
 
-        this.player = player;
         hp = 1;
     }
 

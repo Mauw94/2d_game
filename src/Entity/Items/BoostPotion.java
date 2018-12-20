@@ -10,13 +10,10 @@ import java.util.TimerTask;
 public class BoostPotion extends Item {
 
     private double boost;
-    private Player player;
     private boolean bonusStarted;
 
     public BoostPotion(TileMap tm, int type, Player player) {
-        super(tm, type);
-
-        this.player = player;
+        super(tm, type, player);
 
         boost = 2.2;
 

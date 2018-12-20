@@ -1,6 +1,7 @@
 package Entity.Items;
 
 import Entity.MapObject;
+import Entity.Player;
 import TileMap.TileMap;
 
 import javax.imageio.ImageIO;
@@ -8,11 +9,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public abstract class Item extends MapObject {
+public class Item extends MapObject {
 
     private String name;
     private int type;
     private BufferedImage image;
+
+    public Player player;
+
     public boolean remove;
     public static final int HEALTH_POTION = 0;
     public static final int BOOST_POTION = 1;
@@ -21,7 +25,7 @@ public abstract class Item extends MapObject {
 
     public static final int MAX_ITEMS = 3;
 
-    public Item(TileMap tm, int type) {
+    public Item(TileMap tm, int type, Player player) {
         super(tm);
 
         width = 15;
@@ -35,6 +39,7 @@ public abstract class Item extends MapObject {
         remove = false;
 
         this.type = type;
+        this.player = player;
 
         try {
             createItem(this.type);
@@ -64,6 +69,22 @@ public abstract class Item extends MapObject {
         }
     }
 
+    public static Item createItemFromLoot(TileMap tm, int type, Player player) {
+        Item item = null;
+        switch (type) {
+            case HEALTH_POTION :
+                item = new HealthPotion(tm, type, player);
+                break;
+            case DAMAGE_POTION :
+                item = new DamagePotion(tm, type, player);
+                break;
+            case BOOST_POTION :
+               item = new BoostPotion(tm, type, player);
+                break;
+        }
+        return item;
+    }
+
     public BufferedImage getImage() { return this.image; }
 
     public String getItemName() { return this.name; }
@@ -71,7 +92,9 @@ public abstract class Item extends MapObject {
     public boolean shouldRemove() { return remove; }
     public void removeItemFromWorld(boolean r) { this.remove = r; }
 
-    public abstract boolean executeItemEffect();
+    public boolean executeItemEffect() {
+        return false;
+    }
 
     private void getNextPosition() {
         if (falling) {

@@ -142,19 +142,10 @@ public class Level1State extends GameState {
                 if (e.dropSmallLoot()) {
                     int itemType = e.getDroppedItemType();
                     System.out.println(itemType);
-                    Item item = null;
-                    // create new item and add to the world at the position the enemy died
-                    switch (itemType) {
-                        case Item.HEALTH_POTION :
-                            item = new HealthPotion(tileMap, itemType, player);
-                            break;
-                        case Item.BOOST_POTION :
-                            item = new BoostPotion(tileMap, itemType, player);
-                            break;
-                        case Item.DAMAGE_POTION :
-                            item = new DamagePotion(tileMap, itemType, player);
-                            break;
-                    }
+                    /*
+                    bugged, created items cannot be used
+                     */
+                    Item item = Item.createItemFromLoot(tileMap, itemType, player);
                     if (item != null) {
                         item.setPosition(e.getx(), e.gety());
                         itemsInWorld.add(item);
