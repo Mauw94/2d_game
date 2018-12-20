@@ -19,7 +19,7 @@ public abstract class Item extends MapObject {
     public static final int DAMAGE_POTION = 2;
     public static final int FIRE_POTION = 3;
 
-    public static final int MAX_ITEMS = 4;
+    public static final int MAX_ITEMS = 3;
 
     public Item(TileMap tm, int type) {
         super(tm);

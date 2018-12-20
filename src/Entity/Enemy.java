@@ -40,7 +40,7 @@ public class Enemy extends MapObject {
 
     public boolean dropSmallLoot() {
         rndLoot = new Random();
-        int loot = rndLoot.nextInt(3) + 1;
+        int loot = rndLoot.nextInt(2);
         if (loot == 1) {
             rndItem = new Random();
             int itemType = rndItem.nextInt(Item.MAX_ITEMS) + 0;

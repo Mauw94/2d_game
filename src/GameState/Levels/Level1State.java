@@ -4,6 +4,7 @@ import Entity.*;
 import Entity.Enemies.LevelOneBoss;
 import Entity.Enemies.Slugger;
 import Entity.Items.BoostPotion;
+import Entity.Items.DamagePotion;
 import Entity.Items.HealthPotion;
 import Entity.Items.Item;
 import GameState.GameState;
@@ -139,8 +140,25 @@ public class Level1State extends GameState {
             if (e.isDead()) {
                 // enemy can drop an item
                 if (e.dropSmallLoot()) {
-                    System.out.println(e.getDroppedItemType());
-                    // create new item and addd to the world at the position the enemy died
+                    int itemType = e.getDroppedItemType();
+                    System.out.println(itemType);
+                    Item item = null;
+                    // create new item and add to the world at the position the enemy died
+                    switch (itemType) {
+                        case Item.HEALTH_POTION :
+                            item = new HealthPotion(tileMap, itemType, player);
+                            break;
+                        case Item.BOOST_POTION :
+                            item = new BoostPotion(tileMap, itemType, player);
+                            break;
+                        case Item.DAMAGE_POTION :
+                            item = new DamagePotion(tileMap, itemType, player);
+                            break;
+                    }
+                    if (item != null) {
+                        item.setPosition(e.getx(), e.gety());
+                        itemsInWorld.add(item);
+                    }
                 }
                 if (e.isDeadByScratching()) {
                     this.levelScore.addPoints(3);
