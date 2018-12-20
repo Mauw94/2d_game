@@ -69,7 +69,7 @@ public class Item extends MapObject {
         }
     }
 
-    public static Item createItemFromLoot(TileMap tm, int type, Player player) {
+    public static Item dropItemFromEnemy(TileMap tm, int type, Player player) {
         Item item = null;
         switch (type) {
             case HEALTH_POTION :

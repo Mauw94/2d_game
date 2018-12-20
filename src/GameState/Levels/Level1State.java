@@ -4,7 +4,6 @@ import Entity.*;
 import Entity.Enemies.LevelOneBoss;
 import Entity.Enemies.Slugger;
 import Entity.Items.BoostPotion;
-import Entity.Items.DamagePotion;
 import Entity.Items.HealthPotion;
 import Entity.Items.Item;
 import GameState.GameState;
@@ -55,7 +54,7 @@ public class Level1State extends GameState {
         levelScore = new Score();
 
         player = new Player(tileMap);
-        player.setPosition(100, 200);
+        player.setPosition(2850, 200);
 
         inventory = player.getInventory();
 
@@ -141,7 +140,7 @@ public class Level1State extends GameState {
                 // enemy can drop an item
                 if (e.dropSmallLoot()) {
                     int itemType = e.getDroppedItemType();
-                    Item item = Item.createItemFromLoot(tileMap, itemType, player);
+                    Item item = Item.dropItemFromEnemy(tileMap, itemType, player);
                     if (item != null) {
                         item.setPosition(e.getx(), e.gety());
                         itemsInWorld.add(item);
@@ -191,8 +190,6 @@ public class Level1State extends GameState {
         for (int i = 0; i < itemsInWorld.size(); i++) {
             itemsInWorld.get(i).draw(g);
         }
-
-        // draw explosions
     }
 
     @Override
