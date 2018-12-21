@@ -54,7 +54,7 @@ public class Level1State extends GameState {
         levelScore = new Score();
 
         player = new Player(tileMap);
-        player.setPosition(2850, 200);
+        player.setPosition(100, 200);
 
         inventory = player.getInventory();
 
